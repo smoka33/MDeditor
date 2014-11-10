@@ -1,0 +1,14 @@
+{
+    "name": "",
+    "require": {
+
+
+        "php": ">=#versiondephp",
+    },
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+}
