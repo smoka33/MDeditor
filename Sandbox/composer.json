@@ -1,6 +1,5 @@
 {
-    "minimum-stability": "dev",
     "require": {
-        
+        "slim/slim": "2.*"
     }
 }
