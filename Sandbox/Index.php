@@ -1,19 +1,24 @@
 <?php 
 
-require 'Slim/Slim.php';
 require "vendor/autoload.php";
 require 'Model/loginValidator.php';
 require 'Model/SignInValidator.php';
 require 'Controller/logout.php';
 session_start();
-\Slim\Slim::registerAutoloader();
 
 
 //chargement slim
 $app = new \Slim\Slim([
-  'templates.path' => 'view'
+  'templates.path' => 'view',
+  'view' => '\Slim\LayoutView',
+  'layout' => 'layouts/main.php'
   ]);	
 
+  // Hook
+  $app->hook('slim.before.router', function () use ($app) {
+    $app->view()->setData('app', $app);
+  });
+  
   // routes
   $app->get('/',function() use ($app){
     if(!isset($_SESSION['id']))
@@ -79,7 +84,7 @@ $app->post('/signin',function() use ($app){
   })->name('logout');
 
 
-	$app->render('header.php', compact('app'));
+#	$app->render('header.php', compact('app'));
 	$app->run();
 #	$app->render('footer.php', compact('app'));
 
