@@ -41,15 +41,21 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+		  <?php if(isset($_SESSION["id"])){ ?>
+            <li><a href="<?php echo $app->urlFor('index');?>">Home</a></li>
+			<li><a href="<?php echo $app->urlFor('logout');?>">log out</a></li>
+            <li class="active"><a href="<?php echo $app->urlFor('profil');?>"><?php echo $_SESSION["pseudo"]?></a></li>
+            <?php }
+			else
+			{?>
+			<li><a href="<?php echo $app->urlFor('index');?>">Home</a></li>
             <li><a href="<?php echo $app->urlFor('signin');?>">Inscription</a></li>
 			<li><a href="<?php echo $app->urlFor('login');?>">Connexion</a></li>
-		<?php if(isset($_SESSION["id"])){ ?>
-					<li><a href="<?php echo $app->urlFor('logout');?>">log out</a></li>
-                    <li class="active"><a href="<?php echo $app->urlFor('profil');?>"><?php echo $_SESSION["pseudo"]?></a></li>
+			<?php }?>
+            
+			       
                     
-                    
-					<?php }?>
+					
                 </ul>
              
         </div><!--/.nav-collapse -->

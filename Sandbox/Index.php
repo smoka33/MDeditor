@@ -23,7 +23,7 @@ $app = new \Slim\Slim([
   $app->get('/',function() use ($app){
     if(!isset($_SESSION['id']))
     {
-      $app->render('login.php');
+      $app->render('index.php');
     }
     else
     {
@@ -75,7 +75,14 @@ $app->post('/signin',function() use ($app){
 })->name('profil');
 
 	$app->get('/login',function() use ($app){	
-	$app->render('login.php');
+	if(!isset($_SESSION['id']))
+	{
+		$app->render('login.php');
+	}
+	else
+	{
+		 $app->redirect($app->urlFor('profil'));
+	}
 })->name('login');
 	
 	$app->get('/logout',function() use ($app){
