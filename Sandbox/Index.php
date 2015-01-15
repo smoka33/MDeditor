@@ -4,6 +4,7 @@ require 'Slim/Slim.php';
 require "vendor/autoload.php";
 require 'Model/loginValidator.php';
 require 'Model/SignInValidator.php';
+require 'Controller/logout.php';
 session_start();
 \Slim\Slim::registerAutoloader();
 
@@ -26,11 +27,12 @@ $app = new \Slim\Slim([
   })->name('index');
   
   $app->post('/login',function() use ($app){
-
     $is_logged = loginValidator::verifLogin($_POST['pseudo'],$_POST['passwd']);
     if(!isset($_SESSION['id']))
     {
       $app->render('login.php');
+	  echo "Login ou Password incorrect";
+	 	
     }
     else
     {
@@ -38,8 +40,15 @@ $app = new \Slim\Slim([
     }
   });
   
-   $app->get('/signin',function() use ($app){	
-	$app->render('signin.php');
+   $app->get('/signin',function() use ($app){
+	if(!isset($_SESSION['id']))
+	{
+		$app->render('signin.php');
+	}
+	else
+	{
+		 $app->redirect($app->urlFor('profil'));
+	}
 })->name('signin');
 
 $app->post('/signin',function() use ($app){
@@ -60,6 +69,14 @@ $app->post('/signin',function() use ($app){
 	$app->render('profil.php');
 })->name('profil');
 
+	$app->get('/login',function() use ($app){	
+	$app->render('login.php');
+})->name('login');
+	
+	$app->get('/logout',function() use ($app){
+    logout::function_logout();
+    $app->redirect($app->urlFor('index'));
+  })->name('logout');
 
 
 	$app->render('header.php', compact('app'));

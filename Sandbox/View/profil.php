@@ -1,3 +1,3 @@
 
-	 <?php echo "Mabite" ?>
+	 <p>SALUT</p>
 	

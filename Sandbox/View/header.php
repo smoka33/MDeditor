@@ -43,18 +43,15 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="<?php echo $app->urlFor('signin');?>">Inscription</a></li>
-			<li><a href="<?php echo $app->urlFor('index');?>">Connexion</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+			<li><a href="<?php echo $app->urlFor('login');?>">Connexion</a></li>
 		<?php if(isset($_SESSION["id"])){ ?>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="<?php echo $app->urlFor('profil');?>"><?php echo $_SESSION["firstname"]." ".$_SESSION["name"] ?></a></li>
-
-                    <li><a href="<?php echo $app->urlFor('docs');?>">Documents</a></li>
-					<li><a href="<?php echo $app->urlFor('EpicEditor');?>">EpicEditor</a></li>
-                    <li><a href="<?php echo $app->urlFor('logout');?>">log out</a></li>
+					<li><a href="<?php echo $app->urlFor('logout');?>">log out</a></li>
+                    <li class="active"><a href="<?php echo $app->urlFor('profil');?>"><?php echo $_SESSION["pseudo"]?></a></li>
+                    
+                    
+					<?php }?>
                 </ul>
-            </div> <?php }?>
+             
+        </div><!--/.nav-collapse -->
       </div>
     </div>    <div class="content">
