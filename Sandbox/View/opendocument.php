@@ -44,7 +44,7 @@
 <body>
 <div class="container">
       <div class="starter-template">
-  <button id="show-result">Show result in console</button>
+  
   
 
   <div id="epiceditor">
@@ -68,7 +68,7 @@ if(isset($_POST['document'])){
 		echo ("</textarea>");
 	}
 	?>
-	<button type="submit" value="Save Post">Save</button>
+	
  </form>
   </div>
   </div>
