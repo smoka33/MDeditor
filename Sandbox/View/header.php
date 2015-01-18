@@ -45,7 +45,8 @@
             <li><a href="<?php echo $app->urlFor('signin');?>">Inscription</a></li>
 			<li><a href="<?php echo $app->urlFor('login');?>">Connexion</a></li>
 		<?php if(isset($_SESSION["id"])){ ?>
-					<li><a href="<?php echo $app->urlFor('logout');?>">log out</a></li>
+					<li><a href="<?php echo $app->urlFor('logout');?>">LogOut</a></li>
+					<li><a href="<?php echo $app->urlFor('test');?>">EpicEditor</a></li>
                     <li class="active"><a href="<?php echo $app->urlFor('profil');?>"><?php echo $_SESSION["pseudo"]?></a></li>
                     
                     

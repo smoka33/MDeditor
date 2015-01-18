@@ -1,7 +1,5 @@
 <?php
 require 'vendor/autoload.php';
-use Nette\Mail\SendmailMailer;
-use Nette\Mail\Message;
 
 class SignInValidator {
 

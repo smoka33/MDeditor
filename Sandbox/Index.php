@@ -3,6 +3,7 @@
 require "vendor/autoload.php";
 require 'Model/loginValidator.php';
 require 'Model/SignInValidator.php';
+require 'Model/fonctionNewNote.php';
 require 'Controller/logout.php';
 session_start();
 
@@ -84,16 +85,54 @@ $app->post('/signin',function() use ($app){
 		 $app->redirect($app->urlFor('profil'));
 	}
 })->name('login');
+
+	$app->get('/editor',function() use ($app){	
+		$app->render('editor.php');
+})->name('editor');
 	
 	$app->get('/logout',function() use ($app){
     logout::function_logout();
     $app->redirect($app->urlFor('index'));
   })->name('logout');
 
+	 $app->post('/editor',function() use ($app)
+{
 
-#	$app->render('header.php', compact('app'));
+	
+    NewNote::save_text($_POST['title'],$_POST['my-edit-area']);
+	$app->redirect($app->urlFor('profil'));
+
+});
+
+	$app->get('/documents',function() use ($app){
+	if(isset($_SESSION['id']))
+	{
+		
+		 $app->render('documents.php');
+	}
+})->name('documents');
+
+$app->post('/documents',function() use ($app){
+	if(isset($_POST['document']))
+	{
+		
+		$id = $_POST['document'];
+		$app->render('opendocument.php');
+		
+		
+}
+});
+
+$app->get('/opendocument',function() use ($app){
+	if(isset($_POST['document']))
+	{
+		var_dump($_POST);die;
+		 $app->render('opendocument.php');
+	}
+})->name('opendocument');
+
 	$app->run();
-#	$app->render('footer.php', compact('app'));
+
 
 
 ?>
